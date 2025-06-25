@@ -15,6 +15,7 @@ export default function Header(){
     const[showUl, setShowUl] = useState(false);
     const ulRef = useRef();
 
+    const[showDesktopSubCat, setShowDesktopSubCat] = useState(false)
     const desktopSubCat = useRef();
      useEffect(() => {
     if (ulToggle) {
@@ -66,8 +67,11 @@ export default function Header(){
     }
     }, [showSubCategory]);
     useEffect(()=>{
-        gsap.fromTo(desktopSubCat.current,{y:20,opacity:0 },{y:0, opacity:1, duration:0.7, ease: "power2.out"})
-    },[])
+        if(showDesktopSubCat && desktopSubCat.current){
+            gsap.fromTo(desktopSubCat.current,{y:20,opacity:0 },{y:0, opacity:1, duration:0.7, ease: "power2.out"})
+        }
+        
+    },[showDesktopSubCat])
     return(
         <>
         {/* ------mobile and tablet header-------- */}
@@ -166,6 +170,8 @@ export default function Header(){
             <div className='flex items-center gap-3'>
                 <FaAngleDown />
                 <li
+                  onMouseEnter={() => setShowDesktopSubCat(true)}
+                  onMouseLeave={() => setShowDesktopSubCat(false)}
                   className="hover:relative hover:after:content-[''] hover:after:absolute hover:after:bottom-0 hover:after:right-0 hover:after:w-[140%] hover:after:h-px hover:after:bg-gray-300 pb-2
                   after:scale-x-0 after:origin-left after:transition-transform after:duration-300   hover:after:scale-x-100 "
                 ><Link>کلاس ها</Link></li>
@@ -180,13 +186,14 @@ export default function Header(){
             ><Link>پروفایل</Link></li>
         </ul>
     </div>
+             {showDesktopSubCat && 
               <ul 
               ref={desktopSubCat}
               className='absolute top-[100%] w-[10%] z-30 right-[19%] bg-black text-white flex flex-col gap-3 p-3 items-end'>
              <li><Link>گروهی</Link></li>
              <li><Link>بدن سازی</Link></li>
              <li><Link>برنامه</Link></li>
-            </ul>
+            </ul>}
    </header>
     </>
 
