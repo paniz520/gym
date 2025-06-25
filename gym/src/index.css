@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@font-face {
+    font-family: vazir-EL;
+    src: url(./font/Vazirmatn-ExtraLight.ttf);
+}
+@font-face {
+    font-family: vazir-L;
+    src: url(./font/Vazirmatn-Light.ttf);
+}
+@font-face {
+    font-family: vazir-R;
+    src: url(./font/Vazirmatn-Regular.ttf);
+}
+@font-face {
+    font-family: vazir-M;
+    src: url(./font/Vazirmatn-Medium.ttf);
+}
+@font-face {
+    font-family: vazir-SB;
+    src: url(./font/Vazirmatn-SemiBold.ttf);
+}
+@font-face {
+    font-family: vazir-B;
+    src: url(./font/Vazirmatn-Bold.ttf);
+}
+@font-face {
+    font-family: vazir-EB;
+    src: url(./font/Vazirmatn-ExtraBold.ttf);
+}
