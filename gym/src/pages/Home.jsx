@@ -4,13 +4,15 @@ import hero2 from '../images/hero2.jpg'
 import hero2Mobile from '../images/hero-mobile-2.jpg'
 import hero3Mobile from '../images/hero-mobile-3.jpg'
 import heroText from '../images/heroText.png'
-import Header from './Header';
+import Header from '../components/Header';
 import { gsap } from "gsap";
+import Environment from '../components/Environment';
 export default function Home(){
     const hero1Ref = useRef();
     const hero2Ref = useRef();
     const hero2MobileRef = useRef()
     const hero3MobileRef = useRef()
+    const heroTextRef = useRef();
   useEffect(() => {
         gsap.set(hero2Ref.current, { opacity: 0 }); // Start with hero1 visible
 
@@ -49,10 +51,13 @@ export default function Home(){
           .to(hero3MobileRef.current, { opacity: 0 }, "<");  
           return () => tl.kill();
     },[])
+    useEffect(()=>{
+      gsap.from(heroTextRef.current, {x: 80, duration:.7, ease: "Power2.in"})
+    },[])
     return(
         <>
-        
-        <div className='w-full h-[100vh] overflow-hidden relative'>
+        <section className='relative w-full'>
+        <div className='w-full md:aspect-[16/9] aspect-[9/16] overflow-hidden relative'>
           <div className='absolute top-0 z-20 w-full'>
             <Header/>
           </div>
@@ -101,17 +106,19 @@ export default function Home(){
         
         <div className='w-full h-full md:h-[46%] flex justify-center items-center relative '>
             <img
+            ref={heroTextRef}
            className='
-           absolute z-20 top-1/3 scale-75
-           md:scale-70 md:top-[15%]
-           lg:scale-93 lg:top-[50%]
+           absolute z-20 top-1/3 scale-70
+           md:scale-60 md:top-[15%]
+           lg:scale-63 lg:top-[50%]
            '
            src={heroText}
            alt="" />
         </div>
           
         </div>
-       
+        </section>
+       <Environment />
         </>
     )
 }
